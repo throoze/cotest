@@ -1,7 +1,17 @@
+const Products = require('./Product/index');
+
 class CarInsurance {
     constructor(products = []) {
-        this.products = products;
+        this.products = products.map(product => {
+            const constr = Products[product.name.split(' ').join('').concat("Product")];
+            if (constr) {
+                return new constr(product.name, product.sellIn, product.price);
+            } else {
+                return product;
+            }
+        });
     }
+    
     updatePrice() {
         for (var i = 0; i < this.products.length; i++) {
             if (this.products[i].name != 'Full Coverage' && this.products[i].name != 'Special Full Coverage') {
