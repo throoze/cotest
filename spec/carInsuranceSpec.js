@@ -3,6 +3,14 @@ const CarInsurance = require('../src/models/CarInsurance');
 const Product = require('../src/models/Product/Product');
 
 describe("#updatePrice", () => {
+    context("with no parameters", () => {
+        it("should do nothing", () => {
+            const carInsurance = new CarInsurance();
+            carInsurance.updatePrice();
+            expect(carInsurance.products.length).to.equal(0);
+        });
+    });
+
     context("with an empty list of products", () => {
         it("should do nothing", () => {
             const emptyList = [];
@@ -70,8 +78,10 @@ describe("#updatePrice", () => {
         it("should do nothing", () => {
             const productList = [new Product('Mega Coverage', 0, 80)];
             const carInsurance = new CarInsurance(productList);
-            expect(carInsurance.updatePrice()).to.equal(productList);
-            expect(carInsurance.products).to.equal(productList);
+            carInsurance.updatePrice();
+            expect(carInsurance.products[0].name).to.equal('Mega Coverage');
+            expect(carInsurance.products[0].price).to.equal(80);
+            expect(carInsurance.products[0].sellIn).to.equal(0);
         });
     });
 
