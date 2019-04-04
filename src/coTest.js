@@ -14,15 +14,22 @@ const productsAtDayZero = [
 ];
 
 const carInsurance = new CarInsurance(productsAtDayZero);
-const productPrinter = function (product) {
-  console.log(`${product.name}, ${product.sellIn}, ${product.price}`);
+const nameFieldLength = 25;
+const normalizeName = (name) => {
+  return name.concat(" ".repeat(nameFieldLength - name.length));
 };
 
+const productPrinter = (product) => {
+  let normalizedName = normalizeName(product.name);
+  console.log(`${normalizedName},\t${product.sellIn},\t\t${product.price}`);
+};
+
+
+
 for (let i = 1; i <= 30; i += 1) {
-// for (let i = 1; i <= 1; i += 1) {
-  console.log(`Day ${i}`);
-  console.log('name, sellIn, price');
-  // carInsurance.updatePrice().forEach(productPrinter);
-  carInsurance.updatePrice()
+  console.log(`----------------------- Day ${i} ----------------------`);
+  console.log(`${normalizeName('Name')},\tsellIn,\t\tprice`);
+  console.log(`-----------------------------------------------------`);
+  carInsurance.updatePrice().forEach(productPrinter);
   console.log('');
 }
