@@ -75,3 +75,40 @@ for (let i = 1; i <= 30; i += 1) {
   console.log('');
 }
 ```
+
+### My solution
+
+My solution was developed using `node v10.15.3`. The first step was to
+describe the elements of the solution in their corresponding test
+suites, and implement the tests. Afterwards, I started by refactoring
+the `Product` and `CarInsurance` classes to their own modules.
+
+Then I created subclasses for every known kind of non regular product,
+and added the custom rules to their corresponding methods, usually
+only the ones related to the price update.
+
+If a new kind of product is created, the price update rules can be
+specified by creating a new class that overrides the corresponding
+method and updates the price according to the new rules. As long as
+this new non regular product class is exported in the index of the
+product module, and the classname matches the name of the product as
+explained below, `CarInsurance` class will be able to access its
+particular updating rules without major changes.
+
+The convention for naming the non regular product subclasses is to take
+the Product name, capitalize every word on it, join them and append
+the word `Product` at the end. For example, if a new product is called
+`"Super Mega Sale"`, the corresponding subclass name would be:
+`SuperMegaSaleProduct`.
+
+#### npm commands:
+
+The required commands are implemented:
+
+- `$ npm run test`: runs the test suites and displays a code coverage
+  report in the standard output. It also generates an html code
+  coverage report, that can be found in the `coverage` folder.
+
+- `$ npm run after-30-days`: displays on the standard output an
+  example of the evolution of a list of products on a 30 days timespan,
+  similar to the specified format.
