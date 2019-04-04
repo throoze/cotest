@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
-const CarInsurance = require('../src/coTest').CarInsurance;
-const Product = require('../src/coTest').Product;
+const CarInsurance = require('../src/models/CarInsurance');
+const Product = require('../src/models/Product');
 
 const productsAtDayZero = [
     new Product('Medium Coverage', 10, 20),

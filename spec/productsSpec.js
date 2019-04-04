@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Product = require('../src/coTest').Product;
+const Product = require('../src/models/Product');
 
 it("should have a name", () => {
     expect(new Product('Medium Coverage', 42, 42)).to.have.property('name');
